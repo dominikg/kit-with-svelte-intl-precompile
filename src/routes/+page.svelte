@@ -1,5 +1,7 @@
 <script>
     import {t, locale, locales} from 'svelte-intl-precompile';
+    import {cool} from '$lib/cool.js'
+    let name = "Name";
 </script>
 <div class="locale-switcher">
     {#each $locales as loc}
@@ -13,9 +15,16 @@
             {loc}
         </button>
     {/each}
+    <label for="name" class="name">name: <input id="name" bind:value={name}></label>
 </div>
-<h1>translated foo:{$t('foo')}</h1>
+
+<h1>{$t('foo',{values:{name}})}</h1>
+
+<button on:click={()=>{cool()}}>cool alert</button>
 <style>
+    .name {
+        padding: 0.5rem;
+    }
     .locale-switcher {
         display: flex;
         gap: 1rem
