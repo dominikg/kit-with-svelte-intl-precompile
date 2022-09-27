@@ -66,3 +66,7 @@ console.log("hooks.client.done");
 ```
 
 Which would only work if de.xxxx.js would not import start again, which causes a dead-lock on `await loadLocale()`
+
+# Possible Solution
+use `manualChunks` to resolve the dead-lock. See [vite.config.js](./vite.config.js)
+Enable/disable manualChunks, run `pnpm build` and compare [./.svelte-kit-auto/output/client/stats.html](./.svelte-kit-auto/output/client/stats.html)
