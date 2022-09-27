@@ -1,0 +1,43 @@
+{
+	"name": "intl-with-client-hook",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"clean:build": "rimraf .svelte-kit* .cloudflare build build-node",
+		"sync": "svelte-kit sync",
+		"build:node": "cross-env ADAPTER=node vite build",
+		"build:cf": "cross-env ADAPTER=cf vite build",
+		"build:auto": "cross-env vite build",
+		"build": "run-s clean:build sync build:auto build:node build:cf",
+		"preview:node": "node build-node",
+		"preview:cf": "miniflare .cloudflare/worker.js",
+		"preview:auto": "vite preview",
+		"preview": "run-p preview:node preview:cf preview:auto",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-cloudflare-workers": "1.0.0-next.57",
+		"@sveltejs/adapter-node": "1.0.0-next.96",
+		"@sveltejs/kit": "next",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.16.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"miniflare": "^2.9.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^2.6.2",
+		"prettier-plugin-svelte": "^2.7.0",
+		"rimraf": "^3.0.2",
+		"svelte": "^3.44.0",
+		"svelte-check": "^2.7.1",
+		"svelte-intl-precompile": "^0.12.0",
+		"typescript": "^4.7.4",
+		"vite": "^3.1.0"
+	},
+	"type": "module"
+}

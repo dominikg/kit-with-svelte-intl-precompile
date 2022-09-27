@@ -1,0 +1,15 @@
+name = "intl-with-client-hook"
+account_id = "<your-account-id>"
+
+main = "./.cloudflare/worker.js"
+site.bucket = "./.cloudflare/public"
+
+build.command = "npm --version"
+
+compatibility_date = "2022-09-27"
+workers_dev = true
+
+[build.upload]
+format = "modules"
+dir = "./.cloudflare"
+file = "worker.js"
